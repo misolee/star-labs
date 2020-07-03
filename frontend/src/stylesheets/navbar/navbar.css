@@ -1,0 +1,17 @@
+.navbar {
+  position: absolute;
+  width: 30vw;
+  margin: 0 auto;
+  left: 50%;
+  padding: 5vh;
+  text-align: right;
+  color: white;
+}
+
+.language {
+  padding: 10px;
+  background-color: rgba(152, 152, 163, 0.5);
+  color: white;
+  border: none;
+  border-radius: 5px;
+}

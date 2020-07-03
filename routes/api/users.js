@@ -18,7 +18,7 @@ router.post('/register', (req, res) => {
   User.findOne({ email })
     .then(user => {
       if (user) {
-        errors.email = 'This email is already registered';
+        errors.email = { eng: 'This email is already registered', kor: '벌써 가입된 이메일입니다' };
         return res.status(400).json(errors);
       } else {
         const newUser = new User({ name, email, password, language });
@@ -46,7 +46,7 @@ router.post('/login', (req, res) => {
   User.findOne({ email })
     .then(user => {
       if (!user) {
-        errors.email = 'This user does not exist'
+        errors.email = { eng: 'This user does not exist', kor: '존재하지 않는 이메일입니다' }
         return res.status(404).json(errors);
       }
 
@@ -69,7 +69,7 @@ router.post('/login', (req, res) => {
               }
             );
           } else {
-            return res.status(400).json({ password: 'Incorrect password' });
+            return res.status(400).json({ password: { eng: 'Incorrect password', kor: '아이디와 비밀번호가 일치하지 않습니다' }});
           }
         })
     })

@@ -4,6 +4,7 @@ import Navbar from './navbar';
 
 const mapStateToProps = (state) => {
   let sessionLanguage = state.session.language ? state.session.language : state.session.user.language;
+  
   return {
     language: sessionLanguage,
   };

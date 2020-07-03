@@ -6,6 +6,7 @@ export const RECEIVE_SESSION_ERRORS = "RECEIVE_SESSION_ERRORS";
 export const RECEIVE_USER_LOGOUT = "RECEIVE_USER_LOGOUT";
 export const RECEIVE_USER_SIGN_IN = "RECEIVE_USER_SIGN_IN";
 export const CHANGE_LANGUAGE = "CHANGE_LANGUAGE";
+export const CLEAR_ERRORS = "CLEAR_ERRORS";
 
 export const receiveCurrentUser = currentUser => ({
   type: RECEIVE_CURRENT_USER,
@@ -16,9 +17,10 @@ export const receiveUserSignIn = () => ({
   type: RECEIVE_USER_SIGN_IN
 });
   
-export const receiveErrors = errors => ({
+export const receiveErrors = (errors, page) => ({
   type: RECEIVE_SESSION_ERRORS,
-  errors
+  errors,
+  page
 });
 
 export const logoutUser = () => ({
@@ -30,10 +32,14 @@ export const changeUserLanguage = (language) => ({
   language
 })
 
+export const clearErrors = () => ({
+  type: CLEAR_ERRORS
+})
+
 export const register = user => dispatch => (
   APIUtil.register(user)
     .then(() => dispatch(receiveUserSignIn()))
-    .catch(err => dispatch(receiveErrors(err.response.data)))
+    .catch(err => dispatch(receiveErrors(err.response.data, 'register')))
 );
 
 export const login = user => dispatch => (
@@ -45,7 +51,7 @@ export const login = user => dispatch => (
       APIUtil.setAuthToken(token);
       dispatch(receiveCurrentUser(decoded));
     })
-    .catch(err => dispatch(receiveErrors(err.response.data)))
+    .catch(err => dispatch(receiveErrors(err.response.data, 'login')))
 );
 
 export const logout = () => dispatch => {

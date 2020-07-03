@@ -24,6 +24,7 @@ export default function(state = initialState, action) {
       return {
         ...state,
         isAuthenticated: false,
+        language: 'eng',
         user: undefined
       };
     case RECEIVE_USER_SIGN_IN:

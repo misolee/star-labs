@@ -13,38 +13,62 @@ module.exports = function validateRegisterInput(data) {
       min: 2,
       max: 30
     })) {
-    errors.name = 'Name must be between 2 and 30 characters';
+    errors.name = { 
+      eng: 'Name must be between 2 and 30 characters',
+      kor: '성함은 2-30자여야 합니다'
+    };
   }
 
   if (Validator.isEmpty(data.name)) {
-    errors.name = 'Name field is required';
+    errors.name = {
+      eng: 'Name field is required',
+      kor: '성함은 필수입니다'
+    };
   }
 
   if (Validator.isEmpty(data.email)) {
-    errors.email = 'Email field is required';
+    errors.email = {
+      eng: 'Email field is required',
+      kor: '이메일은 필수입니다'
+    };
   }
 
   if (!Validator.isEmail(data.email)) {
-    errors.email = 'Email is invalid';
+    errors.email = {
+      eng: 'Email is invalid',
+      kor: '이메일주소를 확인하십시오'
+    };
   }
 
   if (Validator.isEmpty(data.password)) {
-    errors.password = 'Password field is required';
+    errors.password = {
+      eng: 'Password field is required',
+      kor: '비밀번호는 필수입니다'
+    };
   }
 
   if (!Validator.isLength(data.password, {
       min: 6,
-      max: 30
+      max: 12
     })) {
-    errors.password = 'Password must be at least 6 characters';
+    errors.password = {
+      eng: 'Password must be between 6 and 12 characters',
+      kor: '비밀번호는 6-12자여야 합니다'
+    };
   }
 
   if (Validator.isEmpty(data.confirmPassword)) {
-    errors.confirmPassword = 'Confirm Password field is required';
+    errors.confirmPassword = {
+      eng: 'Confirm Password field is required',
+      kor: '비밀번호 확인은 필수입니다'
+    };
   }
 
   if (!Validator.equals(data.password, data.confirmPassword)) {
-    errors.confirmPassword = 'Passwords must match';
+    errors.confirmPassword = {
+      eng: 'Passwords must match',
+      kor: '비밀번호는 일치하여야 합니다'
+    };
   }
 
   return {

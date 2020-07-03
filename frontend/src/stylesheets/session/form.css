@@ -128,6 +128,16 @@
   text-decoration: underline;
 }
 
+.errors {
+  margin-bottom: 10px;
+}
+
+.error {
+  color: rgb(224, 145, 145);
+  font-size: 12px;
+  margin: 5px 0;
+}
+
 @media (max-width: 768px) {
   .component-block {
     width: 80vw;

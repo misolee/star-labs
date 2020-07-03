@@ -3,8 +3,10 @@ import { logout } from '../../actions/session_actions';
 import Greeting from './greeting';
 
 const mapStateToProps = (state) => {
+  let sessionLanguage = state.session.language ? state.session.language : state.session.user.language;
+  console.log('sessionLanguage', sessionLanguage)
   return {
-    language: state.session.language,
+    language: sessionLanguage,
     user: state.session.user
   };
 };

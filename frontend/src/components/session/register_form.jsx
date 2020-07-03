@@ -12,12 +12,14 @@ class RegisterForm extends React.Component {
 			name: "",
 			password: "",
 			confirmPassword: "",
-			errors: {},
 		};
 	}
 
-	static getDerivedStateFromProps(props, state) {
-		state.errors = props.errors;
+	componentDidMount() {
+		this.props.clearErrors();
+	}
+
+	static getDerivedStateFromProps(props) {
 		if (props.isSignedIn === true) props.history.push("/login");
 		return null;
 	}
@@ -40,13 +42,17 @@ class RegisterForm extends React.Component {
 	}
 
 	renderErrors() {
-		return (
-			<div className="login-errors">
-				{Object.keys(this.state.errors).map((error, i) => (
-					<div key={`error-${i}`}>{this.state.errors[error]}</div>
-				))}
-			</div>
-		);
+		if (this.props.errors) {
+			return (
+				<div className="errors">
+					{Object.keys(this.props.errors).map((error, i) => (
+						<div key={`error-${i}`} className="error">
+							{this.props.errors[error][this.props.language]}
+						</div>
+					))}
+				</div>
+			);
+		}
 	}
 
 	render() {

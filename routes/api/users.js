@@ -69,7 +69,7 @@ router.post('/login', (req, res) => {
               }
             );
           } else {
-            return res.status(400).json({ password: { eng: 'Incorrect password', kor: '아이디와 비밀번호가 일치하지 않습니다' }});
+            return res.status(400).json({ password: { eng: 'Incorrect password', kor: '이메일과 비밀번호가 일치하지 않습니다' }});
           }
         })
     })
